@@ -16,6 +16,11 @@ def main():
 
     model.set_presenter(presenter)
 
+    #запрос на импорт файла
+    presenter.preload_data()
+
+    #передача управления в Viever
+    presenter.start_view()
 
 if __name__ == "__main__":
     main()
