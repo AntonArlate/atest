@@ -1,3 +1,4 @@
+import datetime
 import modules
 
 
@@ -32,3 +33,12 @@ class Presenter:
     
     def get_field_search(self, field, value):
         return self.model.get_field_search(field, value)
+    
+    def delete_note(self, position):
+        self.model.delete_note(position)
+    
+    def amend_note (self, position, new_note):
+        self.model.amend_note(position, new_note)
+
+    def find_index_in_date (self, start_date : datetime, end_date : datetime):
+        return self.model.find_index_in_date(start_date, end_date)

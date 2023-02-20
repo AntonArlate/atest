@@ -39,6 +39,14 @@ class Temp_data:
         self.__str_json['notes'][lenght-1]["notation"] = notation
         self.__save_file()
 
+    def amend_note (self, position, new_note):
+        self.__str_json['notes'][position] = new_note
+        self.__save_file()
+
+    def delete_note(self, position):
+        del self.__str_json['notes'][position]
+        self.__save_file()
+
 
     def __save_file(self):
         with open ('note.json', 'w') as file:
