@@ -29,3 +29,6 @@ class Presenter:
     
     def add_new_note(self, title, notation):
         return self.model.add_new_note(title, notation)
+    
+    def get_field_search(self, field, value):
+        return self.model.get_field_search(field, value)

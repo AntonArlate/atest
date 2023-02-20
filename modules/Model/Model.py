@@ -18,12 +18,14 @@ class Model:
 
 
     def get_data (self, start, end, *filters):
-        data = self.temp_data.get_str_json()
-        notes : list[dict] = data["notes"]
+        notes = self.__reqest_data_as_notes()
         if end == -1:
-            end = len(notes)
+            end = len(notes)-1
         
-        notes = notes[start:end]
+        if start == -1:
+            start = end
+        
+        notes = notes[start:end+1]
         i = 0
         # читаем все поля
         for note in notes:
@@ -37,6 +39,25 @@ class Model:
         return notes
     
     
+    def get_field_search(self, field, value):
+        notes = self.__reqest_data_as_notes()
+        i = 0
+        flag = False
+        for note in notes:
+            if note[field] == value:
+                flag = True
+                break
+            i += 1
+
+        if flag == True: return i
+        else: return -1
+    
+    
     def add_new_note(self, title, notation):
         self.temp_data.add_new_note(title, notation)
         return True
+
+
+    def __reqest_data_as_notes(self) -> list[dict]:
+        data = self.temp_data.get_str_json()
+        return data["notes"]
